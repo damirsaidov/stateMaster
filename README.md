@@ -135,7 +135,7 @@ npm i
 ### Run the project
 
 ```bash
-npm start
+npm run dev
 ```
 
 ---
