@@ -10,21 +10,53 @@ const JotaiAsync = () => {
   const [modal, setModal] = useState(false);
   const [elem, setElem] = useState(null);
   const [edit, setEdit] = useState("");
-  const [search, setSearch] = useState("");
-  const [selected, setSelected] = useState("all");
-
   async function getData() {
     try {
-      let res = await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data/data`);
+      let res = await fetch(
+        `https://68c81b295d8d9f51473450f6.mockapi.io/damir/data`
+      );
       let data = await res.json();
       setRes(data);
     } catch (error) {
       console.error(error);
     }
   }
+  async function sortData(sort) {
+    if (sort != "all") {
+      try {
+        let res = await fetch(
+          `https://68c81b295d8d9f51473450f6.mockapi.io/damir/data?status=${sort}`
+        );
+        let data = await res.json();
+        setRes(data);
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      getData();
+    }
+  }
+  async function seatchData(inp) {
+    if (inp.trim()) {
+      try {
+        let res = await fetch(
+          `https://68c81b295d8d9f51473450f6.mockapi.io/damir/data?name=${sort}`
+        );
+        let data = await res.json();
+        setRes(data);
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      getData();
+    }
+  }
   async function deleteData(id) {
     try {
-      await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data/data/${id}`, { method: "DELETE" });
+      await fetch(
+        `https://68c81b295d8d9f51473450f6.mockapi.io/damir/data/${id}`,
+        { method: "DELETE" }
+      );
       getData();
     } catch (error) {
       console.error(error);
@@ -32,11 +64,14 @@ const JotaiAsync = () => {
   }
   async function statusData(e) {
     try {
-      await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data/data/${e.id}`, {
-        method: "PUT",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify({ ...e, status: !e.status }),
-      });
+      await fetch(
+        `https://68c81b295d8d9f51473450f6.mockapi.io/damir/data/${e.id}`,
+        {
+          method: "PUT",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify({ ...e, status: !e.status }),
+        }
+      );
       getData();
     } catch (error) {
       console.error(error);
@@ -44,11 +79,14 @@ const JotaiAsync = () => {
   }
   async function editData(e) {
     try {
-      await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data/data/${e.id}`, {
-        method: "PUT",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify({ ...e, name: e.name }),
-      });
+      await fetch(
+        `https://68c81b295d8d9f51473450f6.mockapi.io/damir/data/${e.id}`,
+        {
+          method: "PUT",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify({ ...e, name: e.name }),
+        }
+      );
       getData();
     } catch (error) {
       console.error(error);
@@ -56,7 +94,7 @@ const JotaiAsync = () => {
   }
   async function postData(name) {
     try {
-      await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data/data`, {
+      await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ name: name, status: false }),
@@ -81,31 +119,24 @@ const JotaiAsync = () => {
           Add
         </Button>
         <Select
-            defaultValue='all'
-            style={{ width: 120 }}
-            onChange={(e) => setSelected(e)}
-            options={[
-              { value: "all", label: "All" },
-              { value: "active", label: "Active" },
-              { value: "inactive", label: "Inactive" },
-            ]}
-          />
+          defaultValue='all'
+          style={{ width: 120 }}
+          onChange={(e) => sortData(e)}
+          options={[
+            { value: "all", label: "All" },
+            { value: "active", label: "Active" },
+            { value: "inactive", label: "Inactive" },
+          ]}
+        />
         <Input
           placeholder='Search'
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => seatchData(e.target.value)}
         ></Input>
       </Space>
       <>
-        {res
-          .filter((e) => e.name.toLowerCase().includes(search.toLowerCase()))
-          .filter((e) => {
-            if (selected == "active") return e.status == true;
-            if (selected == "inactive") return e.status == false;
-            return true;
-          })
-          ?.map((e) => (
-            <div key={e.id} className="cart">
+        {Array.isArray(res) &&
+          res?.map((e) => (
+            <div key={e.id} className='cart'>
               <h1>{e.name}</h1>
               <Space>
                 <Tag color={e.status ? "green" : "red"}>
