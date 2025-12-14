@@ -1,0 +1,123 @@
+body {
+  margin: 0;
+  width: 100%;
+  font-family: "Fira Code", "JetBrains Mono", "Source Code Pro", Menlo, Consolas, "Courier New", monospace;
+  font-size: 14px;
+}
+.ant-tag {
+  padding: 5px;
+  width: 70px;
+  text-align: center;
+}
+.dark {
+  height: 100vh;
+  color: white;
+  background-color: #090909;
+  .ant-btn {
+    color: #1677ff;
+    background-color: #090909;
+    border: 1px solid #1677ff;
+  }
+  .ant-btn-dangerous {
+    background-color: black;
+    color: #ff4d4f;
+    border: 1px solid #ff4d4f;
+  }
+  .ant-tag {
+    background-color: black !important;
+    border: 1px solid;
+  }
+  .ant-input,
+  .ant-select,
+  .ant-select-item {
+    background-color: black;
+    border: 1px solid #999;
+  }
+  .ant-select-dropdown {
+    background-color: #090909;
+    color: #999;
+  }
+  .ant-input::placeholder,
+  .ant-select-content-value {
+    color: #999;
+  }
+  .ant-input {
+    color: #948b8b;
+  }
+}
+.white {
+  height: 20000px;
+  color: #090909;
+  background-color: white;
+}
+.darked {
+  color: white;
+  background-color: #090909;
+}
+.whitened {
+  color: #090909;
+  background-color: white;
+}
+.dar {
+  border: 1px solid #ffffff;
+  background-color: black;
+}
+.dar::placeholder {
+  color: #ffffff;
+}
+.litBtn {
+  border: 1px solid #1677ff;
+  background-color: black;
+  color: #1677ff;
+}
+
+.nav-link {
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.nav-link--active {
+  box-shadow: 0 2px 0 #1677ff;
+}
+@media (max-width: 520px) {
+  .nav-link--active {
+    box-shadow: 0 1px 0 #1677ff;
+  }
+  .nav-link {
+    padding: 8px;
+    padding-top: 10px;
+  }
+  .dark {
+    height: fit-content !important;
+    padding-bottom: 170px;
+  }
+  .center{
+    text-align: center;
+  }
+  .ant-space {
+    max-width: 100%;
+    margin: auto;
+    flex-direction: column;
+    justify-self: center;
+    text-align: center;
+    gap: 10px;
+    justify-content: center;
+    .ant-input,
+    .ant-select {
+      width: 100% !important;
+    }
+  }
+  .cart {
+    text-align: center;
+  }
+  .hr {
+    display: none;
+  }
+  .comp {
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+  }
+}
