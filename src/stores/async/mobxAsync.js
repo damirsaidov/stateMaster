@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 
 class CounterStore {
   data = [];
-  API = "http://localhost:3000/data";
+  API = "https://68c81b295d8d9f51473450f6.mockapi.io/damir/data";
   constructor() {
     makeAutoObservable(this);
   }

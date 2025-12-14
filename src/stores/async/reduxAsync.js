@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const getData = createAsyncThunk("asyncTodo/getData", async () => {
   try {
-    let res = await fetch("http://localhost:3000/data");
+    let res = await fetch("https://68c81b295d8d9f51473450f6.mockapi.io/damir/data");
     let data = await res.json();
     return data;
   } catch (e) {
@@ -13,7 +13,7 @@ export const sortData = createAsyncThunk(
   async (sort, { dispatch }) => {
     if (sort != "All") {
       try {
-        let res = await fetch(`http://localhost:3000/data?status=${sort}`);
+        let res = await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data?status=${sort}`);
         let data = await res.json();
         return data;
       } catch (e) {
@@ -29,7 +29,7 @@ export const searchData = createAsyncThunk(
   async (search, { dispatch }) => {
     if (search.trim()) {
       try {
-        let res = await fetch(`http://localhost:3000/data?name=${search}`);
+        let res = await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data?name=${search}`);
         let data = await res.json();
         return data;
       } catch (e) {
@@ -44,7 +44,7 @@ export const deleteData = createAsyncThunk(
   "asyncTodo/deleteData",
   async (id, { dispatch }) => {
     try {
-      await fetch(`http://localhost:3000/data/${id}`, { method: "DELETE" });
+      await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data/${id}`, { method: "DELETE" });
       dispatch(getData());
     } catch (e) {
       console.error(e);
@@ -55,7 +55,7 @@ export const statusData = createAsyncThunk(
   "asyncTodo/deleteData",
   async (e, { dispatch }) => {
     try {
-      await fetch(`http://localhost:3000/data/${e.id}`, {
+      await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data/${e.id}`, {
         method: "PUT",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ ...e, status: !e.status }),
@@ -70,7 +70,7 @@ export const editData = createAsyncThunk(
   "asyncTodo/deleteData",
   async (e, { dispatch }) => {
     try {
-      await fetch(`http://localhost:3000/data/${e.id}`, {
+      await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data/${e.id}`, {
         method: "PUT",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ ...e, name: e.name }),
@@ -85,7 +85,7 @@ export const addData = createAsyncThunk(
   "asyncTodo/deleteData",
   async (a, { dispatch }) => {
     try {
-      await fetch(`http://localhost:3000/data`, {
+      await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ status: false, name: a }),

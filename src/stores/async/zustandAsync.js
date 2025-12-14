@@ -3,7 +3,7 @@ const useTodo = create((set, get) => ({
   data: [],
   async getData() {
     try {
-      let res = await fetch("http://localhost:3000/data");
+      let res = await fetch("https://68c81b295d8d9f51473450f6.mockapi.io/damir/data");
       let data = await res.json();
       set({ data: data });
     } catch (error) {
@@ -15,7 +15,7 @@ const useTodo = create((set, get) => ({
       get().getData();
     } else {
       try {
-        let res = await fetch(`http://localhost:3000/data?name=${search}`);
+        let res = await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data?name=${search}`);
         let data = await res.json();
         set({ data: data });
       } catch (e) {
@@ -28,7 +28,7 @@ const useTodo = create((set, get) => ({
       get().getData();
     } else {
       try {
-        let res = await fetch(`http://localhost:3000/data?status=${sort}`);
+        let res = await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data?status=${sort}`);
         let data = await res.json();
         set({ data: data || [] });
       } catch (e) {
@@ -38,7 +38,7 @@ const useTodo = create((set, get) => ({
   },
   async deleteData(id) {
     try {
-      await fetch(`http://localhost:3000/data/${id}`, { method: "DELETE" });
+      await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data/${id}`, { method: "DELETE" });
       get().getData();
     } catch (error) {
       console.error(error);
@@ -46,7 +46,7 @@ const useTodo = create((set, get) => ({
   },
   async postData(name) {
     try {
-      await fetch(`http://localhost:3000/data`, {
+      await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ name: name, status: false }),
@@ -58,7 +58,7 @@ const useTodo = create((set, get) => ({
   },
   async statusData(e) {
     try {
-      await fetch(`http://localhost:3000/data/${e.id}`, {
+      await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data/${e.id}`, {
         method: "PUT",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ ...e, status: !e.status }),
@@ -70,7 +70,7 @@ const useTodo = create((set, get) => ({
   },
   async editData(e) {
     try {
-      await fetch(`http://localhost:3000/data/${e.id}`, {
+      await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data/${e.id}`, {
         method: "PUT",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ ...e, name: e.name }),

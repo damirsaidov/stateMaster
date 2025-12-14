@@ -15,7 +15,7 @@ const JotaiAsync = () => {
 
   async function getData() {
     try {
-      let res = await fetch(`http://localhost:3000/data`);
+      let res = await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data/data`);
       let data = await res.json();
       setRes(data);
     } catch (error) {
@@ -24,7 +24,7 @@ const JotaiAsync = () => {
   }
   async function deleteData(id) {
     try {
-      await fetch(`http://localhost:3000/data/${id}`, { method: "DELETE" });
+      await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data/data/${id}`, { method: "DELETE" });
       getData();
     } catch (error) {
       console.error(error);
@@ -32,7 +32,7 @@ const JotaiAsync = () => {
   }
   async function statusData(e) {
     try {
-      await fetch(`http://localhost:3000/data/${e.id}`, {
+      await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data/data/${e.id}`, {
         method: "PUT",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ ...e, status: !e.status }),
@@ -44,7 +44,7 @@ const JotaiAsync = () => {
   }
   async function editData(e) {
     try {
-      await fetch(`http://localhost:3000/data/${e.id}`, {
+      await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data/data/${e.id}`, {
         method: "PUT",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ ...e, name: e.name }),
@@ -56,7 +56,7 @@ const JotaiAsync = () => {
   }
   async function postData(name) {
     try {
-      await fetch(`http://localhost:3000/data`, {
+      await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data/data`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({ name: name, status: false }),

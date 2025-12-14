@@ -7,7 +7,7 @@ const AboutId = () => {
   const [data, setData] = useState({});
   async function getData() {
     try {
-      let res = await fetch(`http://localhost:3000/data/${id}`);
+      let res = await fetch(`https://68c81b295d8d9f51473450f6.mockapi.io/damir/data/${id}`);
       let data = await res.json();
       setData(data);
     } catch (error) {
